@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
+import os
 
-db_connection_string = "mysql+pymysql://root:Mrtosso123@saibascareer.cfc6agsc2mbd.ap-southeast-2.rds.amazonaws.com/saibascareer?charset=utf8mb4"
-
+db_connection_string = os.environ['db_connection_string'] 
 engine = create_engine (
   db_connection_string,
   connect_args={
