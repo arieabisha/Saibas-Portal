@@ -21,12 +21,11 @@ def load_jobs_from_db():
 
 def load_job_from_db(id):
   with engine.connect() as conn:
-    result = conn.execute(text("select * from jobs where id = :val"), {"val": id})    
-  rows = []
+    result = conn.execute(text("select *, format(salary,2) as sal2 from jobs where id = :val"), {"val": id})    
+  job = []
   for row in result.all():
-    rows.append(row)    
-  return rows  
-      
+    job.append(row)
+  return job
     
     
 
