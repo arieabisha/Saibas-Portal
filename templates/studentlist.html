@@ -1,0 +1,11 @@
+<tr>
+  <td>{{student['stdid']}}</td>
+  <td>
+    {% if not 'name' in student %}
+      {{student['fname']}}
+    {% else %}
+      {{student['name']}}
+    {% endif %}
+  </td>
+  <td>{{student['dob']}}</td>
+</tr>

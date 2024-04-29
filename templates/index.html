@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title%} {% endblock %}
+
+{% block body %}  
+  <div class="container-fluid">
+    <div class="container mt-3">
+      <h2>Daftar Murid</h>
+      <p></p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Tanggal Lahir</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          {% include 'studentlist.html' %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>    
+{% endblock %}

@@ -10,6 +10,14 @@ engine = create_engine (
     }
   })
 
+def load_students_from_db():
+  with engine.connect() as conn:
+    result = conn.execute(text("select *, concat(fname,' ', mname,' ',lname) as name  from student"))
+    students = []
+    for row in result.all():
+      students.append(row._asdict())
+    return students 
+
 def load_jobs_from_db():
   with engine.connect() as conn:
     result = conn.execute(text("select * from jobs"))
