@@ -1,16 +1,31 @@
 <!doctpye html>
 <html lang="en-US">
 <head>
-
+<!-- bootstrap 5
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+-->
 
+<!-- bootstrap 3.4.1 -->
+  <link rel="stylesheet" href="static/jquery/bootstrap341.min.css">
+
+
+  
   <meta charset="utf-8">
   <title>{% block title %} {% endblock %}</title>
   <body>
       {% block body %}
       {% endblock %}
+
+<!-- js 5     
     <script type="text/javascript" src="/static/js/jquery-3.2.1.slim.min.js"></script>
-    <script type="text/javascript" src= "/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src= "/static/js/bootstrap.min.js"></script>  
+-->  
+
+<!-- js 3.4.1 -->
+    <script src="static/jquery/jquery.min.js"></script>
+    <script src="static/jquery/bootstrap341.min.js"></script>
+
     
   </body>
+
 </head>

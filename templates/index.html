@@ -4,9 +4,11 @@
 {% block title%} {% endblock %}
 
 {% block body %}  
-  <div class="container-fluid">
-    <div class="container mt-3">
-      <h2>Daftar Murid</h>
+  <div class="container">
+  
+      <b>Daftar Murid</b>
+    <div align="right"><button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#mymodal" data-show="true">Tambah murid</button>
+    </div>
       <p></p>
       <table class="table table-bordered">
         <thead>
@@ -22,6 +24,59 @@
           {% endfor %}
         </tbody>
       </table>
+
+<!--add student-->
+
+    <div id="mymodal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Tambah Murid</h4>
+          </div>
+        
+          <div class="modal-body">
+            <form action="" method="post">
+
+              <div class="form-group">
+                <label>ID</label>
+                <input type="text" name="stdid" class="form-control" required="1">
+              </div>
+            
+              <div class="form-group">
+                <label>Nama Depan</label>
+                <input type="text" name="fname" class="form-control" required="1">
+              </div>
+            
+              <div class="form-group">
+                <label>Nama Tengah</t></label>
+                <input type="text" name="mname" class="form-control" required="1">
+              </div>
+            
+                <div class="form-group"> 
+                  <label>Nama Belakang</label>
+                  <input type="text" name="lname" class="form-control" required="1">
+                </div>
+            
+                <div class="form-group">
+                  <label>Tanggal Lahir</label>
+                  <input type="date" name="dob" class="form-control" required="1">
+                </div>
+            
+                <div class="form-group">
+                  <button class="btn btn-primary" type="submit">Tambah Murid</button>
+                </div>  
+          
+            </form>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </div>    
+
+  </div> 
 {% endblock %}
