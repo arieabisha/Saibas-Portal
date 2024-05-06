@@ -10,14 +10,34 @@ engine = create_engine (
     }
   })
 
+# student
+def load_student_cursor():
+  with engine.connect() as conn:
+    cursor=conn._cursor_execute(text("SELECT * FROM student"))
+    return cursor.fetchall()
+
+
 def load_students_from_db():
   with engine.connect() as conn:
-    result = conn.execute(text("select *, concat(fname,' ', mname,' ',lname) as name  from student"))
+    result = conn.execute(text("select id, stdid, fname, mname, lname, dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student"))
+  
     students = []
-    for row in result.all():
-      students.append(row._asdict())
-    return students 
+    for row in result.fetchall():
+      students.append(row)
+      return students
 
+def add_student_to_db(data):
+  with engine.connect() as conn:
+    query = text(f"INSERT INTO student (fname, mname, lname, sex, dob, notes) VALUES ('{data['fname']}', '{data['mname']}', '{data['lname']}', '{data['sex']}', '{data['dob']}','')")
+
+  conn.close()
+  conn = engine.connect()
+  conn.execute(query)
+  conn.commit()
+   # conn.execute(query, {fname:data['fname'],mname: data['mname'],lname:data['lname'],sex:data['sex'],dob:data['dob']})
+  #return query
+    
+#job
 def load_jobs_from_db():
   with engine.connect() as conn:
     result = conn.execute(text("select * from jobs"))
