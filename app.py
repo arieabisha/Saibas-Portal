@@ -1,7 +1,8 @@
-from flask import Flask, redirect, render_template, json, request, url_for
-from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_student_cursor
+from flask import Flask, redirect, render_template, json, request, url_for, flash
+from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students
 
 app = Flask(__name__)
+app.secret_key = 'super secret'
 
 @app.route("/")
 def hello_world():
@@ -19,7 +20,7 @@ def hello_world():
 @app.route("/students")
 def list_students():
 #  students = load_students_from_db()
-  students = load_student_cursor()
+  students = load_students()
   return json.dumps(students, default=str)
 
 @app.route("/student/apply", methods=['post'])
@@ -27,6 +28,9 @@ def add_student():
   data = request.form
   
   query = add_student_to_db(data)
+  
+  flash("Murid berhasil ditambahkan")
+  
   return redirect(url_for('hello_world'))
 
   #return json.dumps(query, default=str)

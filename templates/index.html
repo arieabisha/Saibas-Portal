@@ -9,7 +9,15 @@
       <b>Daftar Murid</b>
     <div align="right"><button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#studentadd" data-show="true">Tambah murid</button>
     </div>
-      <p></p>
+      <p class="lead mt-0">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            {{message}}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      </p>
       <table class="table table-bordered">
         <thead>
           <tr>

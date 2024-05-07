@@ -10,6 +10,7 @@ packages = [{include = "repl_nix_saibas_careers_website"}]
 python = "^3.10"
 flask = "^3.0.2"
 sqlalchemy = "^2.0.29"
+mysql-connector-python = "^8.4.0"
 
 
 [build-system]

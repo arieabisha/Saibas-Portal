@@ -11,20 +11,22 @@ engine = create_engine (
   })
 
 # student
-def load_student_cursor():
+def load_students():
   with engine.connect() as conn:
-    cursor=conn._cursor_execute(text("SELECT * FROM student"))
-    return cursor.fetchall()
-
+    result = conn.execute(text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name"))
+    return result.all()
 
 def load_students_from_db():
   with engine.connect() as conn:
-    result = conn.execute(text("select id, stdid, fname, mname, lname, dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student"))
+    query = text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name")
+  
+    result = conn.execute(query)
   
     students = []
-    for row in result.fetchall():
+    for row in result.all():
       students.append(row)
-      return students
+      
+    return students
 
 def add_student_to_db(data):
   with engine.connect() as conn:
