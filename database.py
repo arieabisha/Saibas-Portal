@@ -18,7 +18,7 @@ def load_students():
 
 def load_students_from_db():
   with engine.connect() as conn:
-    query = text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name")
+    query = text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, date_format(dob, '%Y-%m-%d') as dob2, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name")
   
     result = conn.execute(query)
   

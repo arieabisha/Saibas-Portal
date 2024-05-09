@@ -1,17 +1,19 @@
 <tr>
-  <td>{{student['stdid']}}</td>
+  <td>{{student.stdid}}</td>
   <td>
-    {% if student['name'] =='' %}
-      {{student['fname']}}
+    {% if student.name =='' %}
+      {{student.fname}}
     {% else %}
-      {{student['name']}}
+      {{student.name}}
     {% endif %}
   </td>
-  <td>{{student['sex']}}</td>
-  <td>{{student['dob']}}</td>
+  <td>{{student.sex}}</td>
+  <td>{{student.dob}}</td>
   <td>
-    <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#studentedit">Ubah data</a>
+    <a href="/update/{{student.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#studentedit{{student.id}}">{{student['id']}} Ubah data</a>
     <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus data</a>
   </td>
 </tr>
+<!--edit student-->
+
  {% include 'studentedit.html' %}
