@@ -1,0 +1,58 @@
+<div id="studentdelete{{student.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Hapus Data Murid</h4>
+      </div>
+
+      <div class="modal-body">
+        <form action="/student/delete" method="post">
+
+          <input type="hidden" name= "id" value="{{student.id}}">
+          
+          <div class="form-group">
+            <label>ID {{student.id}}</label>
+          </div>
+
+          <div class="form-group">
+            <label>Kode Murid: {{student.stdid}}</label>
+          </div>
+
+          <div class="form-group">
+            <label>Nama Depan: {{student.fname}}</label>
+            
+          <div class="form-group">
+            <label>Nama Tengah: {{student.mname}}</label>
+          </div>
+
+            <div class="form-group"> 
+              <label>Nama Belakang: {{student.lname}}</label>
+            </div>
+
+          <div class="form-group"> 
+            <label>Laki/Perempuan: {{student.sex}}</label>
+
+            <div class="form-group"> 
+              <label>Tanggal Lahir: {{student.dob2}}</label>
+            </div>
+
+            <div class="form-group"> 
+              <label>Catatan: {{student.notes}}</label>
+            <br>
+
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Hapus Data Murid</button>
+              &nbsp;|&nbsp;
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>  
+
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

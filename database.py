@@ -30,7 +30,7 @@ def load_students_from_db():
 
 def add_student_to_db(data):
   with engine.connect() as conn:
-    query = text(f"INSERT INTO student (fname, mname, lname, sex, dob, notes) VALUES ('{data['fname']}', '{data['mname']}', '{data['lname']}', '{data['sex']}', '{data['dob']}','')")
+    query = text(f"INSERT INTO student (stdid, fname, mname, lname, sex, dob, notes) VALUES ('{data['stdid']}', '{data['fname']}', '{data['mname']}', '{data['lname']}', '{data['sex']}', '{data['dob']}','{data['notes']}')")
 
   conn.close()
   conn = engine.connect()
@@ -38,7 +38,27 @@ def add_student_to_db(data):
   conn.commit()
    # conn.execute(query, {fname:data['fname'],mname: data['mname'],lname:data['lname'],sex:data['sex'],dob:data['dob']})
   #return query
+
+def update_student_to_db(data):
+  with engine.connect() as conn:
+    query = text(f"UPDATE student SET stdid='{data['stdid']}', fname='{data['fname']}', mname='{data['mname']}', lname='{data['lname']}', sex='{data['sex']}', dob='{data['dob2']}', notes='{data['notes']}' WHERE id={data['id']}")
     
+  conn.close()
+  conn = engine.connect()
+  conn.execute(query)
+  conn.commit()
+
+
+def delete_student_from_db(data):
+  with engine.connect() as conn:
+    query = text(f"DELETE FROM student WHERE id={data['id']}")
+
+  conn.close()
+  conn = engine.connect()
+  conn.execute(query)
+  conn.commit()
+  #return query
+
 #job
 def load_jobs_from_db():
   with engine.connect() as conn:

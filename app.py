@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, json, request, url_for, flash
-from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students
+from flask import Flask, redirect, render_template, json, request, url_for, flash, session
+from sqlalchemy import DATE
+from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db
 
 app = Flask(__name__)
 app.secret_key = 'super secret'
@@ -34,6 +35,29 @@ def add_student():
   return redirect(url_for('hello_world'))
 
   #return json.dumps(query, default=str)
+
+@app.route("/student/update", methods=['post'])
+def update_student():
+  data = request.form
+  query = update_student_to_db(data)
+  flash("Murid berhasil diupdate")
+  return redirect(url_for('hello_world'))
+
+@app.route("/student/delete", methods=['post'])
+def delete_student():
+  data = request.form
+  query = delete_student_from_db(data)
+  flash("Murid berhasil dihapus")
+  return redirect(url_for('hello_world'))
+  #return json.dumps(query, default=str)
+
+#@app.route("/delete/<id>", methods = ['get','post'] )
+#def delete(id):
+#  my_data = Data.query.get(id)
+#  db.session.delete(my_data)
+#  db.session.commit()
+#  flash("Data deleted")
+#  return redirect(url_for('hello_world'))
 
 #job route
 @app.route("/jobs")
