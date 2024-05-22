@@ -9,49 +9,63 @@
       <div class="modal-body">
         <form action="/student/update" method="post">
 
-          <div class="form-group">
-            <label>ID</label>
-            <input type="hidden" name= "id" value="{{student.id}}">
-          
-          <div class="form-group">
-            <label>Kode Murid</label>
-            <input type="text" name="stdid" class="form-control" required="1" value="{{student.stdid}}">
-          </div>
+            <div class="form-group">
+              <label>ID</label>
+              <input type="hidden" name= "id" value="{{student.id}}">
+            </div>
 
-          <div class="form-group">
-            <label>Nama Depan</label>
-            <input type="text" name="fname" class="form-control" required="1" value="{{student.fname}}">
-          </div>
+            <div class="form-group">
+              <label>Kode Murid</label>
+              <input type="text" name="stdid" class="form-control" required="1" value="{{student.studentid}}">
+            </div>
 
-          <div class="form-group">
-            <label>Nama Tengah</label>
-            <input type="text" name="mname" class="form-control" value="{{student.mname}}">
-          </div>
+            <div class="form-group">
+              <label>Nama Depan</label>
+              <input type="text" name="fname" class="form-control" required="1" value="{{student.studentfname}}">
+            </div>
+
+            <div class="form-group">
+              <label>Nama Tengah</label>
+              <input type="text" name="mname" class="form-control" value="{{student.studentmname}}">
+            </div>
 
             <div class="form-group"> 
               <label>Nama Belakang</label>
-              <input type="text" name="lname" class="form-control" value="{{student.lname}}">
+              <input type="text" name="lname" class="form-control" value="{{student.studentlname}}">
             </div>
 
-          <div class="form-group"> 
-            <label>Laki/Perempuan</label>
-            <input type="text" name="sex" class="form-control" value="{{student.sex}}">
+            <div class="form-group"> 
+              <label>Laki/Perempuan</label>
+
+                <select name="sex" class="form-control">
+                  <option value=""></option>
+                  {% if student.studentsex =='Laki' %} 
+                  <option value="Laki" selected>Laki</option>
+                  {% else %} 
+                  <option value="Laki">Laki</option>
+                  {% endif %}
+                  {% if student.studentsex =='Perempuan' %} 
+                  <option value="Perempuan" selected>Perempuan</option>
+                  {% else %} 
+                  <option value="Perempuan">Perempuan</option>
+                  {% endif %}                
+                </select>          
+            </div> 
 
             <div class="form-group"> 
               <label>Tanggal Lahir</label>
-              <input type="date" name="dob2" class="form-control" value="{{student.dob2}}">
+              <input type="date" name="dob2" class="form-control" value="{{student.studentdob2}}">
             </div>
 
             <div class="form-group"> 
               <label>Catatan</label>
               <input type="text" name="notes" class="form-control" value="{{student.notes}}">
-            <br>
+            </div>
             
             <div class="form-group">
               <button class="btn btn-primary" type="submit">Ubah Data Murid</button>
               &nbsp;|&nbsp;
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
             </div>  
 
               

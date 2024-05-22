@@ -13,12 +13,12 @@ engine = create_engine (
 # student
 def load_students():
   with engine.connect() as conn:
-    result = conn.execute(text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name"))
+    result = conn.execute(text("select id, studentid, studentfname, studentmname, studentlname, date_format(studentdob, '%d/%m/%Y') as studentdob, notes, studentsex, concat(studentfname,' ', studentmname,' ',studentlname) as studentname  from student order by studentname"))
     return result.all()
 
 def load_students_from_db():
   with engine.connect() as conn:
-    query = text("select id, stdid, fname, mname, lname, date_format(dob, '%d/%m/%Y') as dob, date_format(dob, '%Y-%m-%d') as dob2, notes, sex, concat(fname,' ', mname,' ',lname) as name  from student order by name")
+    query = text("select id, studentid, studentfname, studentmname, studentlname, date_format(studentdob, '%d/%m/%Y') as studentdob, date_format(studentdob, '%Y-%m-%d') as studentdob2, notes, studentsex, concat(studentfname,' ', studentmname,' ',studentlname) as studentname from student where isactive='Y' order by studentname")
   
     result = conn.execute(query)
   
@@ -30,7 +30,7 @@ def load_students_from_db():
 
 def add_student_to_db(data):
   with engine.connect() as conn:
-    query = text(f"INSERT INTO student (stdid, fname, mname, lname, sex, dob, notes) VALUES ('{data['stdid']}', '{data['fname']}', '{data['mname']}', '{data['lname']}', '{data['sex']}', '{data['dob']}','{data['notes']}')")
+    query = text(f"INSERT INTO student (studentid, studentfname, studentmname, studentlname, studentsex, studentdob, notes, isactive, createdon) VALUES ('{data['stdid']}', '{data['fname']}', '{data['mname']}', '{data['lname']}', '{data['sex']}', '{data['dob']}','{data['notes']}', 'Y', now())")
 
   conn.close()
   conn = engine.connect()
@@ -41,7 +41,7 @@ def add_student_to_db(data):
 
 def update_student_to_db(data):
   with engine.connect() as conn:
-    query = text(f"UPDATE student SET stdid='{data['stdid']}', fname='{data['fname']}', mname='{data['mname']}', lname='{data['lname']}', sex='{data['sex']}', dob='{data['dob2']}', notes='{data['notes']}' WHERE id={data['id']}")
+    query = text(f"UPDATE student SET studentid='{data['stdid']}', studentfname='{data['fname']}', studentmname='{data['mname']}', studentlname='{data['lname']}', studentsex='{data['sex']}', studentdob='{data['dob2']}', notes='{data['notes']}' WHERE id={data['id']}")
     
   conn.close()
   conn = engine.connect()
@@ -51,7 +51,8 @@ def update_student_to_db(data):
 
 def delete_student_from_db(data):
   with engine.connect() as conn:
-    query = text(f"DELETE FROM student WHERE id={data['id']}")
+    #query = text(f"DELETE FROM student WHERE id={data['id']}")
+    query = text(f"UPDATE student SET isactive='N' WHERE id={data['id']}")
 
   conn.close()
   conn = engine.connect()

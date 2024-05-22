@@ -1,14 +1,14 @@
 <tr>
-  <td>{{student.stdid}}</td>
+  <td>{{student.studentid}}</td>
   <td>
-    {% if student.name =='' %}
-      {{student.fname}}
+    {% if student.studentname =='' %}
+      {{student.studentfname}}
     {% else %}
-      {{student.name}}
+      {{student.studentname}}
     {% endif %}
   </td>
-  <td>{{student.sex}}</td>
-  <td>{{student.dob}}</td>
+  <td>{{student.studentsex}}</td>
+  <td>{{student.studentdob}}</td>
   <td>
     <!--
     <a href="update/{{student.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#studentedit{{student.id}}">{{student['id']}} Ubah data</a>
