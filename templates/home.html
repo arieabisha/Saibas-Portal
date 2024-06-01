@@ -3,21 +3,41 @@
 <html>
 
 <head>
-    <title>Saibas job openings</title>
+    <title>Saibas Portal</title>
   {% include 'bootstrap.html' %}
 
 </head>
 
 <body>
-    {% include 'navbar.html' %}
-    <div class="container">
-    <h1 class="text-center mt-2 mb-4">Job openings</h1>
-    {% include 'banner.html' %}
-    <h2 class="text-center mt-2 mb-4">About {{company_name}}</h2>  
-      <p class = "lead">
-      We are a foundation that provides job openings for people who want to work in the field of Education.  We are looking for people who are willing to learn and grow. 
-      </p>
-      <h2 class="text-center mt-2 mb-4">Open positions</h2>
+      {% include 'navbar.html' %}
+
+  <br><br><br>
+      <div class = "content">
+        <b>About {{company_name}} </b><br>We are a foundation that provides job openings for people who want to work in the field of Education.  We are looking for people who are willing to learn and grow.         
+
+  Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+  Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+        Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+        Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+      Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+      Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+        Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+        Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+
+      
+      </div>
+
+      <div class="jumbotron text-center">
+        <h1>Saibas</h1> 
+        <p>Contact us</p> 
+      </div>      
       <div>
         {% for job in jobs %}
         {% include 'careerlist.html' %}
@@ -30,6 +50,8 @@
 
     </div>  
   {% include 'footer.html' %}
+
+  
 </body>
   
 

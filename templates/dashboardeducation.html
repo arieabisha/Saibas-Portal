@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Modul Edukasi</title>
+  {% include 'bootstrap.html' %}
+
+</head>
+
+<body>
+    {% include 'navbareducation.html' %}
+    <div class="container">
+    <h1 class="text-center mt-2 mb-4">Job openings</h1>
+    {% include 'banner.html' %}
+    <h2 class="text-center mt-2 mb-4">About {{company_name}}</h2>  
+      <p class = "lead">
+      We are a foundation that provides job openings for people who want to work in the field of Education.  We are looking for people who are willing to learn and grow. 
+      </p>
+      <h2 class="text-center mt-2 mb-4">Dashboard Saibas</h2>
+      <div>
+        ploty js graphs goes here
+      </div>
+      <div class="text-center">
+        <a target="_blank" href="mailto:arieabisha@gmail.com?subject=Question&body=Question%3A%20%3Ctype%20your%20question%3E%0D%0ALink%3A%20%3Cpaste%20web%20link%20%2F%20if%20any%3E%0D%0AFile%3A%20%3Cpaste%20file%20link%20%2F%20if%20any%3E" button class="btn btn-primary btn-lg mt-2" >Contact us</a>
+        <p class="mt-4"></p>
+      </div>
+
+    </div>  
+  {% include 'footer.html' %}
+</body>
+  
+
+</html>

@@ -39,16 +39,13 @@
 
                 <select name="sex" class="form-control">
                   <option value=""></option>
-                  {% if student.studentsex =='Laki' %} 
-                  <option value="Laki" selected>Laki</option>
-                  {% else %} 
-                  <option value="Laki">Laki</option>
-                  {% endif %}
-                  {% if student.studentsex =='Perempuan' %} 
-                  <option value="Perempuan" selected>Perempuan</option>
-                  {% else %} 
-                  <option value="Perempuan">Perempuan</option>
-                  {% endif %}                
+                  {% for sex in gender %}
+                    {% if student.studentsex == sex.sex %}
+                      <option value="{{sex.sex}}" selected>{{sex.sex}}</option>
+                    {% else %}
+                      <option value="{{sex.sex}}">{{sex.sex}}</option>
+                    {% endif %}
+                  {% endfor %}
                 </select>          
             </div> 
 

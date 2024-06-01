@@ -1,8 +1,42 @@
-<nav class="navbar bg-body-tertiary shadow-sm fixed-top bg-white">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="/static/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
-    </a>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Saibas</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+
+        {% for menu in menus %}
+          <li><a href="{{menu.menupage}}">
+          {% if menu.menuid2 == 0 %}
+            <li><a href="{{menu.menupage}}">{{menu.menutitle}}</a></li>
+          {% endif %}
+
+          {% if menu.menuid2 == 1 %}
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.menutitle}}<span class="caret"></span></a>
+            <ul class="dropdown-menu" aria-labelledby="DropdownMenuLink">
+          {% endif %}
+
+          {% if menu.menuid2 > 1 %}
+              <li><a href="{{menu.menupy}}">{{menu.menutitle}}</a></li>
+          {% endif %}
+
+          {% if menu.menuid2 == 99 %}
+              </ul>
+              </li>
+          {% endif %}
+       {% endfor %}
+
+      </ul>
+    </div>
   </div>
 </nav>
-<div height="60px"></div> 
+
+
+
+

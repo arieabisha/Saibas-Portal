@@ -1,10 +1,18 @@
-{% extends 'base.html' %}
-{% include 'header.html' %}
+<!DOCTYPE html>
 
-{% block title%} {% endblock %}
+<html>
 
-{% block body %}  
-  <div class="container">
+<head>
+    <title>Saibas Portal</title>
+  {% include 'bootstrap.html' %}
+
+</head>
+
+<body>
+      {% include 'navbar.html' %}
+    
+  <br><br><br>
+  <div class="content">
   
       <b>Daftar Murid</b>
     <div align="right"><button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#studentadd" data-show="true">Tambah murid</button>
@@ -38,4 +46,7 @@
 <!--add student-->
     {% include 'studentadd.html' %}
   </div> 
-{% endblock %}
+  {% include 'footer.html' %}
+</body>
+
+</html>

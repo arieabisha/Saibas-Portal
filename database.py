@@ -60,6 +60,41 @@ def delete_student_from_db(data):
   conn.commit()
   #return query
 
+#master table
+
+def load_menu_from_db():
+  with engine.connect() as conn:
+    query = text("select distinct menuid1, menuid2, menutitle, menupy, menupage from menu order by menuid1, menuid2")
+    #query = text("select * from menu where menuid2=0 order by menuid1")
+    result = conn.execute(query)
+    menu = []
+    for row in result.all():
+      menu.append(row)
+
+    return menu
+
+def load_submenum_from_db(data):
+  with engine.connect() as conn:
+    query = text(f"select * from menu where menuid1={data['menuid1']} order by menuid2")
+    result = conn.execute(query)
+    submenu = []
+    for row in result.all():
+      submenu.append(row)
+
+    return submenu
+
+
+def load_gender_from_db():
+  with engine.connect() as conn:
+    query = text("select id, sex, isactive from gender where isactive='Y' order by sex")
+
+    result = conn.execute(query)
+    gender = []
+    for row in result.all():
+      gender.append(row)
+
+    return gender
+    
 #job
 def load_jobs_from_db():
   with engine.connect() as conn:

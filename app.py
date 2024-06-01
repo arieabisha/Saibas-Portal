@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, json, request, url_for, flash, session
 from sqlalchemy import DATE
-from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db
+from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db, load_gender_from_db, load_menu_from_db
 
 app = Flask(__name__)
 app.secret_key = 'super secret'
@@ -8,13 +8,17 @@ app.secret_key = 'super secret'
 @app.route("/")
 def hello_world():
   #jobs = load_jobs_from_db()
-  students = load_students_from_db()
-  return render_template('index.html',
-                          students=students)
+  menus = load_menu_from_db()
+  #return json.dumps(gender, default=str)
+  #gender = load_gender_from_db()
+  #students = load_students_from_db()
+  #return render_template('studentindex.html', 
+  #                       students = students, 
+  #                       gender = gender)
 
-  #return render_template('home.html', 
-  #                       jobs = jobs, 
-  #                       company_name = 'Saibas')
+  return render_template('home.html', 
+                         menus = menus, 
+                         company_name = 'Saibas')
 
 #student route
 
@@ -24,7 +28,19 @@ def list_students():
   students = load_students()
   return json.dumps(students, default=str)
 
-@app.route("/student/apply", methods=['post'])
+@app.route("/student/index")
+def index_student():
+
+  menus = load_menu_from_db()
+  gender = load_gender_from_db()
+  students = load_students_from_db()
+  return render_template('studentindex.html', 
+                          menus = menus, 
+                         students = students, 
+                         gender = gender)
+
+
+@app.route("/student/add", methods=['post'])
 def add_student():
   data = request.form
   
@@ -32,7 +48,7 @@ def add_student():
   
   flash("Murid berhasil ditambahkan")
   
-  return redirect(url_for('hello_world'))
+  return redirect(url_for('index_student'))
 
   #return json.dumps(query, default=str)
 
@@ -41,14 +57,14 @@ def update_student():
   data = request.form
   query = update_student_to_db(data)
   flash("Murid berhasil diupdate")
-  return redirect(url_for('hello_world'))
+  return redirect(url_for('index_student'))
 
 @app.route("/student/delete", methods=['post'])
 def delete_student():
   data = request.form
   query = delete_student_from_db(data)
   flash("Murid berhasil dihapus")
-  return redirect(url_for('hello_world'))
+  return redirect(url_for('index_student'))
   #return json.dumps(query, default=str)
 
 #@app.route("/delete/<id>", methods = ['get','post'] )
@@ -58,6 +74,7 @@ def delete_student():
 #  db.session.commit()
 #  flash("Data deleted")
 #  return redirect(url_for('hello_world'))
+
 
 #job route
 @app.route("/jobs")
