@@ -73,6 +73,21 @@ def load_menu_from_db():
 
     return menu
 
+def load_active_menu_from_db(menupy):
+  with engine.connect() as conn:
+    query = text("select menupage from menu where menupy = :val")
+    #query = text("select * from menu where menuid2=0 order by menuid1")
+    result = conn.execute(query,{"val": menupy})
+    menupage = []
+    for row in result.all():
+      menupage.append(row)
+
+    menupageremovelist = menupage[0]
+    menupageremovetuple = menupageremovelist[0]
+    menupage = menupageremovetuple
+    
+    return menupage
+
 def load_submenum_from_db(data):
   with engine.connect() as conn:
     query = text(f"select * from menu where menuid1={data['menuid1']} order by menuid2")

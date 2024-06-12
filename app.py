@@ -1,6 +1,8 @@
-from flask import Flask, redirect, render_template, json, request, url_for, flash, session
+from flask import Flask, redirect, render_template, json, request, url_for, flash, session, logging
 from sqlalchemy import DATE
-from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db, load_gender_from_db, load_menu_from_db
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SelectField
+from passlib.hash import sha256_crypt
+from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db, load_gender_from_db, load_menu_from_db, load_active_menu_from_db
 
 app = Flask(__name__)
 app.secret_key = 'super secret'
@@ -34,18 +36,17 @@ def index_student():
   menus = load_menu_from_db()
   gender = load_gender_from_db()
   students = load_students_from_db()
-  return render_template('studentindex.html', 
+  menupage = load_active_menu_from_db("/student/index")
+  
+  return render_template(menupage, 
                           menus = menus, 
                          students = students, 
                          gender = gender)
 
-
 @app.route("/student/add", methods=['post'])
 def add_student():
-  data = request.form
-  
-  query = add_student_to_db(data)
-  
+  data = request.form  
+  query = add_student_to_db(data)  
   flash("Murid berhasil ditambahkan")
   
   return redirect(url_for('index_student'))
@@ -75,6 +76,37 @@ def delete_student():
 #  flash("Data deleted")
 #  return redirect(url_for('hello_world'))
 
+#register user
+class RegisterForm(Form):
+  name = StringField('Name', [validators.Length(min=1, max=50)])
+  username = StringField('Username', [validators.Length(min=4, max=25)])
+  email = StringField('Email', [validators.Length(min=6, max=50)])
+  password = PasswordField('Password',[
+    validators.DataRequired(),
+    validators.EqualTo('confirm', message='Passwords do not match')
+  ])
+  confirm = PasswordField('Confirm Password')
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+  menus = load_menu_from_db()
+  menupage = load_active_menu_from_db("/register")
+
+  form = RegisterForm(request.form)
+  if request.method == 'POST' and form.validate():
+    #name = form.name.data
+    #username = form.username.data
+    #email = form.email.data
+    #password = sha256_crypt.encrypt(form.password.data)
+    #query = f"INSERT INTO user (name, username, email, password) VALUES ('{name}', '{username}', '{email}', '{password}')"
+    #print(query)
+    #return redirect(url_for('hello_world'))
+  #  return json.dumps(t, default=str)
+  #return json.dumps(t, default=str)
+    return render_template(menupage, menus = menus)
+  return render_template(menupage, 
+                         menus = menus, 
+                         form=form)
 
 #job route
 @app.route("/jobs")

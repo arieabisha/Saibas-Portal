@@ -12,9 +12,9 @@
       <ul class="nav navbar-nav navbar-right">
 
         {% for menu in menus %}
-          <li><a href="{{menu.menupage}}">
+          <li><a href="{{menu.menupy}}">
           {% if menu.menuid2 == 0 %}
-            <li><a href="{{menu.menupage}}">{{menu.menutitle}}</a></li>
+            <li><a href="{{menu.menupy}}">{{menu.menutitle}}</a></li>
           {% endif %}
 
           {% if menu.menuid2 == 1 %}
