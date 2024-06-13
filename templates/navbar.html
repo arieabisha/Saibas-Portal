@@ -12,8 +12,7 @@
       <ul class="nav navbar-nav navbar-right">
 
         {% for menu in menus %}
-          <li><a href="{{menu.menupy}}">
-          {% if menu.menuid2 == 0 %}
+           {% if menu.menuid2 == 0 %}
             <li><a href="{{menu.menupy}}">{{menu.menutitle}}</a></li>
           {% endif %}
 
@@ -30,8 +29,9 @@
               </ul>
               </li>
           {% endif %}
+            
        {% endfor %}
-
+        <li><a href="" data-toggle="modal" data-target="#login">Masuk | Daftar</a></li>
       </ul>
     </div>
   </div>

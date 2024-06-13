@@ -64,7 +64,7 @@ def delete_student_from_db(data):
 
 def load_menu_from_db():
   with engine.connect() as conn:
-    query = text("select distinct menuid1, menuid2, menutitle, menupy, menupage from menu order by menuid1, menuid2")
+    query = text("select distinct menuid1, menuid2, menutitle, menupy, menupage from menu where isactive = 'Y' order by menuid1, menuid2")
     #query = text("select * from menu where menuid2=0 order by menuid1")
     result = conn.execute(query)
     menu = []

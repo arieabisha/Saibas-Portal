@@ -76,6 +76,31 @@ def delete_student():
 #  flash("Data deleted")
 #  return redirect(url_for('hello_world'))
 
+#login
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+  menus = load_menu_from_db()
+  menupage = load_active_menu_from_db("/login")
+
+  form = RegisterForm(request.form)
+  if request.method == 'POST' and form.validate():
+    #name = form.name.data
+    #username = form.username.data
+    #email = form.email.data
+    #password = sha256_crypt.encrypt(form.password.data)
+    #query = f"INSERT INTO user (name, username, email, password) VALUES ('{name}', '{username}', '{email}', '{password}')"
+    #print(query)
+    #return redirect(url_for('hello_world'))
+  #  return json.dumps(t, default=str)
+  #return json.dumps(t, default=str)
+    return render_template(menupage, menus = menus)
+  return render_template(menupage, 
+                         menus = menus, 
+                         form=form)
+
+
+
+
 #register user
 class RegisterForm(Form):
   name = StringField('Name', [validators.Length(min=1, max=50)])
