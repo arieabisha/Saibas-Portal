@@ -13,7 +13,11 @@
 
         {% for menu in menus %}
            {% if menu.menuid2 == 0 %}
-            <li><a href="{{menu.menupy}}">{{menu.menutitle}}</a></li>
+              {% if (menu.menupage[:1])=='#' %}
+                <li><a href="" data-toggle="modal" data-target="{{menu.menupage}}">{{menu.menutitle}}</a></li>
+              {% else %}
+                <li><a href="{{menu.menupy}}">{{menu.menutitle}}</a></li>
+              {% endif %}
           {% endif %}
 
           {% if menu.menuid2 == 1 %}
@@ -31,7 +35,6 @@
           {% endif %}
             
        {% endfor %}
-        <li><a href="" data-toggle="modal" data-target="#login">Masuk | Daftar</a></li>
       </ul>
     </div>
   </div>

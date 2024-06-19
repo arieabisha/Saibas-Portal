@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, json, request, url_for, flash, session, logging
 from sqlalchemy import DATE
+#from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SelectField
 from passlib.hash import sha256_crypt
 from database import load_jobs_from_db, load_job_from_db, load_students_from_db, add_student_to_db, load_students, update_student_to_db, delete_student_from_db, load_gender_from_db, load_menu_from_db, load_active_menu_from_db
